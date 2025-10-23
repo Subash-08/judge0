@@ -7,10 +7,43 @@ services:
       dockerfile: Dockerfile
     healthCheckPath: /about
     envVars:
+      - key: JUDGE0_DB_HOST
+        fromService:
+          name: judge0-db
+          type: postgres
+          property: host
+      - key: JUDGE0_DB_PASSWORD
+        fromService:
+          name: judge0-db
+          type: postgres
+          property: password
+      - key: JUDGE0_DB_USERNAME
+        fromService:
+          name: judge0-db
+          type: postgres
+          property: user
       - key: JUDGE0_DB_NAME
-        value: judge0
+        fromService:
+          name: judge0-db
+          type: postgres
+          property: database
       - key: JUDGE0_DB_PORT
         value: 5432
+      - key: REDIS_HOST
+        fromService:
+          name: judge0-redis
+          type: redis
+          property: host
+      - key: REDIS_PORT
+        fromService:
+          name: judge0-redis
+          type: redis
+          property: port
+      - key: REDIS_PASSWORD
+        fromService:
+          name: judge0-redis
+          type: redis
+          property: password
       - key: JUDGE0_SECRET_KEY
         generateValue: true
       - key: JUDGE0_SAVE_COMPILE_OUTPUT
@@ -21,3 +54,8 @@ services:
   - type: redis
     name: judge0-redis
     plan: free
+
+  - type: postgres
+    name: judge0-db
+    plan: free
+    ipAllowList: []
