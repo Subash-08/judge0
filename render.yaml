@@ -1,0 +1,41 @@
+services:
+  - type: web
+    name: judge0
+    env: docker
+    docker:
+      dockerfile: Dockerfile
+    envVars:
+      - key: POSTGRES_PASSWORD
+        generateValue: true
+      - key: REDIS_URL
+        fromService:
+          name: judge0-redis
+          type: redis
+          property: connectionString
+      - key: JUDGE0_SECRET_KEY
+        generateValue: true
+      - key: JUDGE0_DB_HOST
+        fromService:
+          name: judge0-db
+          type: postgresql
+          property: host
+      - key: JUDGE0_DB_PASSWORD
+        fromService:
+          name: judge0-db
+          type: postgresql
+          property: password
+      - key: JUDGE0_DB_USERNAME
+        fromService:
+          name: judge0-db
+          type: postgresql
+          property: user
+
+  - type: redis
+    name: judge0-redis
+    plan: free
+
+  - type: postgresql
+    name: judge0-db
+    plan: free
+    ipAllowList: []
+    databases: ["judge0"]
