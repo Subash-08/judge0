@@ -12,8 +12,9 @@ services:
         value: "true"
       - key: JUDGE0_ALLOW_ORIGIN
         value: "*"
+      # Database variables will be added manually later
 
   - type: redis
     name: judge0-redis
     plan: free
-    ipAllowList: []  # Empty array allows all connections
+    ipAllowList: []
