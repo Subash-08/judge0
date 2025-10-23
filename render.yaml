@@ -13,7 +13,6 @@ services:
         value: "true"
       - key: JUDGE0_ALLOW_ORIGIN
         value: "*"
-      # We'll add database vars manually after creating PostgreSQL
 
   - type: redis
     name: judge0-redis
