@@ -12,8 +12,10 @@ services:
         value: "true"
       - key: JUDGE0_ALLOW_ORIGIN
         value: "*"
-      # You’ll add DB-related vars after PostgreSQL is created
 
   - type: redis
     name: judge0-redis
     plan: free
+    ipAllowList:
+      - sourceService: judge0
+        description: Allow access from Judge0 web service
