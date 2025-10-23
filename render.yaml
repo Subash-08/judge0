@@ -1,10 +1,9 @@
 services:
   - type: web
     name: judge0
-    plan: free
     env: docker
-    docker:
-      dockerfile: Dockerfile
+    plan: free
+    dockerfilePath: ./Dockerfile
     healthCheckPath: /about
     envVars:
       - key: JUDGE0_SECRET_KEY
@@ -13,6 +12,7 @@ services:
         value: "true"
       - key: JUDGE0_ALLOW_ORIGIN
         value: "*"
+      # You’ll add DB-related vars after PostgreSQL is created
 
   - type: redis
     name: judge0-redis
