@@ -10,17 +10,17 @@ services:
       - key: JUDGE0_DB_HOST
         fromService:
           name: judge0-db
-          type: postgresql
+          type: postgres
           property: host
       - key: JUDGE0_DB_PASSWORD
         fromService:
           name: judge0-db
-          type: postgresql
+          type: postgres
           property: password
       - key: JUDGE0_DB_USERNAME
         fromService:
           name: judge0-db
-          type: postgresql
+          type: postgres
           property: user
       - key: JUDGE0_DB_NAME
         value: judge0
@@ -52,7 +52,7 @@ services:
     name: judge0-redis
     plan: free
 
-  - type: postgresql
+  - type: postgres
     name: judge0-db
     plan: free
     ipAllowList: []
